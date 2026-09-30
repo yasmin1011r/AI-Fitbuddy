@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FitBuddy Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FitBuddy Plan</h1>
+
+    {% if message %}
+        <p class="success">{{ message }}</p>
+    {% endif %}
+
+    <div class="card">
+        <h2>User Information</h2>
+
+        <p><b>Name:</b> {{ user.name }}</p>
+        <p><b>User ID:</b> {{ user.user_id }}</p>
+        <p><b>Age:</b> {{ user.age }}</p>
+        <p><b>Weight:</b> {{ user.weight }}</p>
+        <p><b>Goal:</b> {{ user.goal }}</p>
+        <p><b>Intensity:</b> {{ user.intensity }}</p>
+    </div>
+
+    <div class="card">
+        <h2>7-Day Workout Plan</h2>
+        <pre>{{ workout_plan }}</pre>
+    </div>
+
+    <div class="card">
+        <h2>Nutrition / Recovery Tip</h2>
+        <p>{{ nutrition_tip }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Update Your Plan</h2>
+
+        <form action="/submit-feedback" method="post">
+
+            <input
+                type="hidden"
+                name="user_id"
+                value="{{ user.user_id }}"
+            >
+
+            <textarea
+                name="feedback"
+                placeholder="Example: Add more rest days"
+                required
+            ></textarea>
+
+            <button type="submit">
+                Update Plan with AI
+            </button>
+
+        </form>
+    </div>
+
+    <a href="/">Create New Plan</a>
+    <br><br>
+    <a href="/view-all-users">View All Users</a>
+
+</div>
+
+</body>
+</html>

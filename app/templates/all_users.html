@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FitBuddy Admin</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FitBuddy - All Users</h1>
+
+    {% for user in users %}
+
+    <div class="card">
+
+        <h2>{{ user.name }}</h2>
+
+        <p><b>User ID:</b> {{ user.user_id }}</p>
+        <p><b>Age:</b> {{ user.age }}</p>
+        <p><b>Weight:</b> {{ user.weight }}</p>
+        <p><b>Goal:</b> {{ user.goal }}</p>
+        <p><b>Intensity:</b> {{ user.intensity }}</p>
+
+        <h3>Original Plan</h3>
+        <pre>{{ user.original_plan }}</pre>
+
+        {% if user.updated_plan %}
+            <h3>Updated Plan</h3>
+            <pre>{{ user.updated_plan }}</pre>
+        {% endif %}
+
+    </div>
+
+    {% else %}
+
+    <p>No users found.</p>
+
+    {% endfor %}
+
+    <a href="/">Back to Home</a>
+
+</div>
+
+</body>
+</html>
